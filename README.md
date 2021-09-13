@@ -13,6 +13,8 @@ Download and launch the executable "Taskbar11.exe". The program is portable.
 # Requirements
 - Windows 11
 
+Possibly works on other version of Windows. However, since Windows 11 is the first version with locked settings there really is no purpose to install it on earlier versions of Windows.
+
 # Information
 Taskbar11 edits registry values in the following paths for the taskbar position and icon sizes:
 - Computer\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3
