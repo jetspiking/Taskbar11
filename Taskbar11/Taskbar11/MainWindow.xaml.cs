@@ -25,7 +25,7 @@ namespace Taskbar11
 
             int taskbarSize = GetTaskbarSize();
 
-            if (taskbarSize > -1 && taskbarSize < 4)
+            if (taskbarSize > -1 && taskbarSize < 3)
                 XAML_TaskbarSizeBox.SelectedIndex = taskbarSize;
             else 
                 XAML_TaskbarSizeBox.SelectedItem = taskbarSize.ToString();
