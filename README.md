@@ -19,7 +19,7 @@ Taskbar11 edits registry values in the following paths for the taskbar position 
 - Computer\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
 
 - In the "StuckRects3" path the key "TaskbarSi" is modified. Values 0, 1, 2 represent the taskbar icon size (respectively small, medium and large).
-- In the "Advanced" path the key "Settings" is modified. Index 12 is modified (second row, fifth column). Possible values are 0, 1, 2 and 3. However, only the values 1 and 3 are usable without a broken view. This is illustrated in the image below.
+- In the "Advanced" path the key "Settings" is modified. Index 12 is modified (second row, fifth column). Possible values are 0, 1, 2 and 3. However, only the values 1 and 3 are usable without a broken view in Windows 11. Because of this, the values for left and right are not included in the Combobox in the application. The value that can be edited is highlighted in the image below.
 
 <img src="https://raw.githubusercontent.com/jetspiking/Taskbar11/main/Images/Taskbar11_RegistryPositionValue.png" width="500">
 
