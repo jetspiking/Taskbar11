@@ -14,7 +14,7 @@ Download and the .exe under releases and launch the executable "Taskbar11.exe". 
 - Windows 11
 
 # Information
-Taskbar11 edits registry values in the following paths, respectively for taskbar position and icon size:
+Taskbar11 edits registry values in the following paths for the taskbar position and icon sizes:
 - Computer\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3
 - Computer\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
 
