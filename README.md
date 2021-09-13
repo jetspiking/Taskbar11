@@ -6,7 +6,7 @@ Change the position and size of the Windows taskbar in Windows 11
 Taskbar11 customizes the look of the Windows 11 taskbar, which doesn't have any options by default. The taskbar can be set to the top or bottom (default) of the screen, it also allows for setting various icon sizes.
 
 # Usage
-Download and the .exe under releases and launch the executable "Taskbar11.exe". The program is portable.
+Download and launch the executable "Taskbar11.exe". The program is portable.
 
 [Releases](https://github.com/jetspiking/Taskbar11/releases)
 
