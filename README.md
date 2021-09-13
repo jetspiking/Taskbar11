@@ -29,4 +29,5 @@ After editing the registry values, the application kills the explorer.exe proces
 
 #Overview
 <img src="https://github.com/jetspiking/Taskbar11/blob/main/Images/Taskbar11_TopSmall.png">
+<img src="https://github.com/jetspiking/Taskbar11/blob/main/Images/Taskbar11_TopMedium.png">
 <img src="https://github.com/jetspiking/Taskbar11/blob/main/Images/Taskbar11_TopLarge.png">
