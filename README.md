@@ -26,3 +26,5 @@ Taskbar11 edits registry values in the following paths for the taskbar position 
 <img src="https://raw.githubusercontent.com/jetspiking/Taskbar11/main/Images/Taskbar11_RegistryPositionValue.png" width="500">
 
 After editing the registry values, the application kills the explorer.exe process. This forces a reload of the UI which displays the new changes afterwards.
+
+<img src="https://github.com/jetspiking/Taskbar11/blob/main/Images/Taskbar11_TopLarge.png">
