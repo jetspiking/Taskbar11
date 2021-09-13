@@ -1,0 +1,26 @@
+﻿<Window x:Class="Taskbar11.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <StackPanel Name="XAML_StackPanel" Orientation="Vertical">
+        <Label FontFamily="Segoe UI" FontWeight="Bold">Taskbar Position</Label>
+        <ComboBox Name="XAML_TaskbarPositionBox" Margin="5,5,5,5">
+            <ComboBoxItem Name="XAML_TaskbarPositionBoxItem_Bottom">Bottom</ComboBoxItem>
+            <ComboBoxItem Name="XAML_TaskbarPositionBoxItem_Top">Top</ComboBoxItem>
+        </ComboBox>
+        <Separator/>
+        <Label FontFamily="Segoe UI" FontWeight="Bold">Taskbar Size</Label>
+        <ComboBox Name="XAML_TaskbarSizeBox" Margin="5,5,5,5">
+            <ComboBoxItem Name="XAML_TaskbarSizeBoxItem_Small">Small</ComboBoxItem>
+            <ComboBoxItem Name="XAML_TaskbarSizeBoxItem_Medium">Medium</ComboBoxItem>
+            <ComboBoxItem Name="XAML_TaskbarSizeBoxItem_Large">Large</ComboBoxItem>
+        </ComboBox>
+        <Separator/>
+        <Button Click="Save_Click" Margin="5,5,5,5" Width="100">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="pack://application:,,,/Resources/FloppyDisk.png" Width="30"></Image>
+                <TextBlock FontFamily="Segoe UI" FontWeight="Bold" VerticalAlignment="Center">Save</TextBlock>
+            </StackPanel>
+        </Button>
+    </StackPanel>
+</Window>
