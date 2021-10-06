@@ -13,7 +13,7 @@ Download and launch the executable "Taskbar11.exe". The program is portable.
 # Requirements
 - Windows 11
 
-Possibly works on other version of Windows. However, since Windows 11 is the first version with locked settings there really is no purpose to install it on earlier versions of Windows.
+Possibly works on other version of Windows. However, since Windows 11 is the first version with locked settings there really is no purpose to install it on earlier activated versions of Windows.
 
 # Information
 All adjusted registry settings can be viewed in [MainWindow.xaml.cs](https://github.com/jetspiking/Taskbar11/blob/main/Taskbar11/Taskbar11/MainWindow.xaml.cs).
