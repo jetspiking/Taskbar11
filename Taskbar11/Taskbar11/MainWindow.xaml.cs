@@ -33,6 +33,18 @@ namespace Taskbar11
             int taskbarPosition = GetTaskbarPosition();
 
             XAML_TaskbarPositionBox.SelectedIndex = taskbarPosition == 1 ? 1 : 0;
+
+            int taskbarAlignment = GetTaskbarAlignment();
+
+            XAML_TaskbarIndentationBox.SelectedIndex = taskbarAlignment < XAML_TaskbarIndentationBox.Items.Count ? taskbarAlignment : 0;
+            XAML_TaskbarSearchCheckBox.IsChecked = IsTaskbarSearchVisible();
+            XAML_TaskbarTaskViewBox.IsChecked = IsTaskbarTaskViewVisible();
+            XAML_TaskbarWidgetsBox.IsChecked = IsTaskbarWidgetsVisible();
+            XAML_TaskbarChatBox.IsChecked = IsTaskbarChatVisible();
+            XAML_TaskbarPenCheckBox.IsChecked = IsTaskbarPenVisible();
+            XAML_TaskbarTouchCheckBox.IsChecked = IsTaskbarTouchKeyboardVisible();
+            XAML_TaskbarVirtualTouchpadCheckBox.IsChecked = IsTaskbarTouchpadVisible();
+            XAML_TaskbarBehaviourCheckBox.IsChecked = IsTaskbarHidden(); 
         }
 
         /// <summary>
@@ -92,12 +104,268 @@ namespace Taskbar11
         /// <summary>
         /// Write the taskbar size to the registry.
         /// </summary>
-        /// <param name="value">Integer that specifies the taskbar size.</param>
-        public void SetTaskbarSize(int value)
+        /// <param name="taskbarSize">Byte that specifies the taskbar size.</param>
+        public void SetTaskbarSize(Byte taskbarSize)
         {
             RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", true);
             if (key != null)
-                key.SetValue("TaskbarSi", value, RegistryValueKind.DWord);
+                key.SetValue("TaskbarSi", taskbarSize, RegistryValueKind.DWord);
+        }
+
+        /// <summary>
+        /// Read the taskbar aligment from the registry.
+        /// </summary>
+        /// <returns>Integer that specifies the taskbar aligment.</returns>
+        public int GetTaskbarAlignment()
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", true);
+            if (key != null)
+            {
+                Object value = key.GetValue("TaskbarAl");
+                if (value != null)
+                    return (int)value;
+            }
+            return -1;
+        }
+
+        /// <summary>
+        /// Write the taskbar alignment to the registry.
+        /// </summary>
+        /// <param name="taskbarAlignment">Byte that specifies the taskbar alignment.</param>
+        public void SetTaskbarAlignment(Byte taskbarAlignment)
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", true);
+            if (key != null)
+                key.SetValue("TaskbarAl", taskbarAlignment, RegistryValueKind.DWord);
+        }
+
+        /// <summary>
+        /// Read the SearchboxTaskbarMode property from the registry.
+        /// </summary>
+        /// <returns>Boolean that defines whether the Search button is visible on the taskbar.</returns>
+        public Boolean IsTaskbarSearchVisible()
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Search", true);
+            if (key != null)
+            {
+                Object value = key.GetValue("SearchboxTaskbarMode");
+                if (value != null)
+                    return ((int)value) == 1;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Write the taskbar SearchboxTaskbarMode property to the registry. 
+        /// </summary>
+        /// <param name="isVisible">Boolean that defines whether the Search button is visible on the taskbar.</param>
+        public void SetTaskbarSearchVisible(Boolean isVisible)
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Search", true);
+            if (key != null)
+                key.SetValue("SearchboxTaskbarMode", isVisible ? 1 : 0, RegistryValueKind.DWord);
+        }
+
+        /// <summary>
+        /// Read the ShowTaskViewButton property from the registry.
+        /// </summary>
+        /// <returns>Boolean that defines whether the TaskView button is visible on the taskbar.</returns>
+        public Boolean IsTaskbarTaskViewVisible()
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", true);
+            if (key != null)
+            {
+                Object value = key.GetValue("ShowTaskViewButton");
+                if (value != null)
+                    return ((int)value) == 1;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Write the taskbar ShowTaskViewButton property to the registry.
+        /// </summary>
+        /// <param name="isVisible">Boolean that defines whether the TaskView button is visible on the taskbar.</param>
+        public void SetTaskbarTaskViewVisible(Boolean isVisible)
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", true);
+            if (key != null)
+                key.SetValue("ShowTaskViewButton", isVisible ? 1 : 0, RegistryValueKind.DWord);
+        }
+
+        /// <summary>
+        /// Read the TaskbarDa property from the registry.
+        /// </summary>
+        /// <returns>Boolean that defines whether the Widgets button is visible on the taskbar.</returns>
+        public Boolean IsTaskbarWidgetsVisible()
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", true);
+            if (key != null)
+            {
+                Object value = key.GetValue("TaskbarDa");
+                if (value != null)
+                    return ((int)value)==1;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Write the taskbar TaskbarDa property to the registry.
+        /// </summary>
+        /// <param name="isVisible">Boolean that defines whether the Widgets button is visible on the taskbar.</param>
+        public void SetTaskbarWidgetsVisible(Boolean isVisible)
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", true);
+            if (key != null)
+                key.SetValue("TaskbarDa", isVisible ? 1 : 0, RegistryValueKind.DWord);
+        }
+
+        /// <summary>
+        /// Read the TaskbarMn property from the registry.
+        /// </summary>
+        /// <returns>Boolean that defines whether the Chat button is visible on the taskbar.</returns>
+        public Boolean IsTaskbarChatVisible()
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", true);
+            if (key != null)
+            {
+                Object value = key.GetValue("TaskbarMn");
+                if (value != null)
+                    return ((int)value) == 1;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Write the taskbar TaskbarMn property to the registry.
+        /// </summary>
+        /// <param name="isVisible">Boolean that defines whether the Chat button is visible on the taskbar.</param>
+        public void SetTaskbarChatVisible(Boolean isVisible)
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", true);
+            if (key != null)
+                key.SetValue("TaskbarMn", isVisible ? 1 : 0, RegistryValueKind.DWord);
+        }
+
+        /// <summary>
+        /// Read the PenWorkspaceButtonDesiredVisibility property from the registry.
+        /// </summary>
+        /// <returns>Boolean that defines whether the Pen button is visible on the taskbar.</returns>
+        public Boolean IsTaskbarPenVisible()
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\PenWorkspace", true);
+            if (key != null)
+            {
+                Object value = key.GetValue("PenWorkspaceButtonDesiredVisibility");
+                if (value != null)
+                    return ((int)value) == 1;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Write the taskbar PenWorkspaceButtonDesiredVisibility property to the registry.
+        /// </summary>
+        /// <param name="isVisible">Boolean that defines whether the Pen button is visible on the taskbar.</param>
+        public void SetTaskbarPenVisible(Boolean isVisible)
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\PenWorkspace", true);
+            if (key != null)
+                key.SetValue("PenWorkspaceButtonDesiredVisibility", isVisible ? 1 : 0, RegistryValueKind.DWord);
+        }
+
+        /// <summary>
+        /// Read the TipbandDesiredVisibility property from the registry.
+        /// </summary>
+        /// <returns>Boolean that defines whether the Touch Keyboard button is visible on the taskbar.</returns>
+        public Boolean IsTaskbarTouchKeyboardVisible()
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\TabletTip\1.7", true);
+            if (key != null)
+            {
+                Object value = key.GetValue("TipbandDesiredVisibility");
+                if (value != null)
+                    return ((int)value) == 1;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Write the taskbar TipbandDesiredVisibility property to the registry.
+        /// </summary>
+        /// <param name="isVisible">Boolean that defines whether the Touch Keyboard button is visible on the taskbar.</param>
+        public void SetTaskbarTouchKeyboardVisible(Boolean isVisible)
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\TabletTip\1.7", true);
+            if (key != null)
+                key.SetValue("TipbandDesiredVisibility", isVisible ? 1 : 0, RegistryValueKind.DWord);
+        }
+
+        /// <summary>
+        /// Read the TouchpadDesiredVisibility property from the registry.
+        /// </summary>
+        /// <returns>Boolean that defines whether the Touchpad button is visible on the taskbar.</returns>
+        public Boolean IsTaskbarTouchpadVisible()
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Touchpad", true);
+            if (key != null)
+            {
+                Object value = key.GetValue("TouchpadDesiredVisibility");
+                if (value != null)
+                    return ((int)value) == 1;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Write the TouchpadDesiredVisibility property to the registry.
+        /// </summary>
+        /// <param name="isVisible">Boolean that defines whether the Touchpad button is visible on the taskbar.</param>
+
+        public void SetTaskbarTouchpadVisible(Boolean isVisible)
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Touchpad", true);
+            if (key != null)
+                key.SetValue("TouchpadDesiredVisibility", isVisible ? 1 : 0, RegistryValueKind.DWord);
+        }
+
+        /// <summary>
+        /// Read the taskbars hide behaviour from the registry.
+        /// </summary>
+        /// <returns>Boolean that specifies whether the taskbar automatically hides based on index 8 of the "Settings" key.</returns>
+        public Boolean IsTaskbarHidden()
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3", true);
+            if (key != null)
+            {
+                Object value = key.GetValue("Settings");
+                if (value != null)
+                {
+                    Byte[] data = (Byte[])value;
+                    Console.WriteLine(data[7 + 1]);
+                    return data[7 + 1]==123;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Write the taskbars hide behaviour to the registry.
+        /// </summary>
+        /// <param name="taskbarPosition">Boolean that specifies whether the taskbar automatically hides based on index 8 of the "Settings" key.</param>
+        public void SetTaskbarHides(Boolean isTaskbarHidden)
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3", true);
+            if (key != null)
+            {
+                Object value = key.GetValue("Settings");
+                if (value != null)
+                {
+                    Byte[] data = (Byte[])value;
+                    data[7 + 1] = (Byte)(isTaskbarHidden?123:122);
+                    key.SetValue("Settings", data, RegistryValueKind.Binary);
+                }
+            }
         }
 
         /// <summary>
@@ -107,8 +375,17 @@ namespace Taskbar11
         /// <param name="e"></param>
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            SetTaskbarSize(XAML_TaskbarSizeBox.SelectedIndex);
+            SetTaskbarSize((Byte)XAML_TaskbarSizeBox.SelectedIndex);
             SetTaskbarPosition(XAML_TaskbarPositionBox.SelectedIndex == 0 ? (Byte)3 : (Byte)1);
+            SetTaskbarAlignment((Byte)XAML_TaskbarIndentationBox.SelectedIndex);
+            SetTaskbarSearchVisible(XAML_TaskbarSearchCheckBox.IsChecked.Value);
+            SetTaskbarTaskViewVisible(XAML_TaskbarTaskViewBox.IsChecked.Value);
+            SetTaskbarWidgetsVisible(XAML_TaskbarWidgetsBox.IsChecked.Value);
+            SetTaskbarChatVisible(XAML_TaskbarChatBox.IsChecked.Value);
+            SetTaskbarPenVisible(XAML_TaskbarPenCheckBox.IsChecked.Value);
+            SetTaskbarTouchKeyboardVisible(XAML_TaskbarTouchCheckBox.IsChecked.Value);
+            SetTaskbarTouchpadVisible(XAML_TaskbarVirtualTouchpadCheckBox.IsChecked.Value);
+            SetTaskbarHides(XAML_TaskbarBehaviourCheckBox.IsChecked.Value);
             RestartExplorer();
         }
 
