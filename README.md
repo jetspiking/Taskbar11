@@ -1,5 +1,5 @@
 # Taskbar11
-<img src="https://github.com/jetspiking/Taskbar11/blob/main/Images/Taskbar11_LargeLeft.png">
+<img src="https://github.com/jetspiking/Taskbar11/blob/main/Images/Taskbar11_Icon.png">
 Change the position and size of the Windows taskbar in Windows 11
 
 # Description
