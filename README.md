@@ -18,4 +18,3 @@ Possibly works on other version of Windows. However, since Windows 11 is the fir
 # Information
 All adjusted registry settings can be viewed in [MainWindow.xaml.cs](https://github.com/jetspiking/Taskbar11/blob/main/Taskbar11/Taskbar11/MainWindow.xaml.cs).
 
-<img src="https://github.com/jetspiking/Taskbar11/blob/main/Images/Taskbar11_Banner.png">
