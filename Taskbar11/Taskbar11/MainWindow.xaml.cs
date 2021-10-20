@@ -44,7 +44,9 @@ namespace Taskbar11
             XAML_TaskbarPenCheckBox.IsChecked = IsTaskbarPenVisible();
             XAML_TaskbarTouchCheckBox.IsChecked = IsTaskbarTouchKeyboardVisible();
             XAML_TaskbarVirtualTouchpadCheckBox.IsChecked = IsTaskbarTouchpadVisible();
-            XAML_TaskbarBehaviourCheckBox.IsChecked = IsTaskbarHidden(); 
+            XAML_TaskbarBehaviourAutoHideCheckBox.IsChecked = IsTaskbarHidden();
+            XAML_TaskbarBehaviourMultiMonitorOnCheckBox.IsChecked = IsTaskbarOnMultipleMonitors();
+            XAML_TaskbarBehaviourMultiMonitorPositionCheckBox.IsChecked = IsTaskbarMultiMonitorPositionTaskbar();
         }
 
         /// <summary>
@@ -330,7 +332,7 @@ namespace Taskbar11
         }
 
         /// <summary>
-        /// Read the taskbars hide behaviour from the registry.
+        /// Read the Settings property from the registry.
         /// </summary>
         /// <returns>Boolean that specifies whether the taskbar automatically hides based on index 8 of the "Settings" key.</returns>
         public Boolean IsTaskbarHidden()
@@ -350,7 +352,7 @@ namespace Taskbar11
         }
 
         /// <summary>
-        /// Write the taskbars hide behaviour to the registry.
+        /// Write the Settings property to the registry.
         /// </summary>
         /// <param name="taskbarPosition">Boolean that specifies whether the taskbar automatically hides based on index 8 of the "Settings" key.</param>
         public void SetTaskbarHides(Boolean isTaskbarHidden)
@@ -369,6 +371,91 @@ namespace Taskbar11
         }
 
         /// <summary>
+        /// Read the MMTaskbarEnabled property from the registry
+        /// </summary>
+        /// <returns>Boolean that specifies whether the taskbar is shown on multiple monitors.</returns>
+        public Boolean IsTaskbarOnMultipleMonitors()
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", true);
+            if (key != null)
+            {
+                Object value = key.GetValue("MMTaskbarEnabled");
+                if (value != null)
+                    return ((int)value) == 1;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Write the MMTaskbarEnabled property to the register.
+        /// </summary>
+        /// <param name="isVisible">Boolean that specifies whether the taskbar is shown on multiple monitors.</param>
+        public void SetTaskbarOnMultipleMonitors(Boolean isVisible)
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", true);
+            if (key != null)
+                key.SetValue("MMTaskbarEnabled", isVisible ? 1 : 0, RegistryValueKind.DWord);
+        }
+
+        /// <summary>
+        /// Read the monitor visibility settings from the registry.
+        /// </summary>
+        /// <returns>Boolean that specifies the Multi Monitor Taskbar Behaviour, based on index 12 of each display key.</returns>
+        public Boolean IsTaskbarMultiMonitorPositionTaskbar()
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\MMStuckRects3", true);
+            
+            if (key != null)
+            {
+                Byte displayCount = 0;
+                foreach (String keyName in key.GetValueNames())
+                {
+                    if (key.GetValueKind(keyName) == RegistryValueKind.Binary)
+                    {
+                        displayCount++;
+                        Object value = key.GetValue(keyName);
+                        if (value != null)
+                        {
+                            Byte[] data = (Byte[])value;
+                            if (data[7 + 5] != GetTaskbarPosition()) return false;
+                        }
+                    }
+                }
+                if (displayCount < 2) return false;
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Write the monitor visibility settings to the registry.
+        /// </summary>
+        /// <param name="multiMonitorTaskbarPosition">Boolean that specifies the Multi Monitor Taskbar Behaviour, based on index 12 of each display key.</param>
+        public void SetTaskbarMultiMonitorPosition(Boolean multiMonitorTaskbarPosition)
+        {
+            if (!multiMonitorTaskbarPosition) return;
+
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\MMStuckRects3", true);
+            if (key != null)
+            {
+                foreach (String keyName in key.GetValueNames())
+                {
+                    if (key.GetValueKind(keyName) == RegistryValueKind.Binary)
+                    {
+                        Object value = key.GetValue(keyName);
+                        if (value != null)
+                        {
+                            Byte[] data = (Byte[])value;
+                            data[7 + 5] = (Byte)GetTaskbarPosition();
+                            key.SetValue(keyName, data, RegistryValueKind.Binary);
+                        }
+                    }
+                }
+            }
+        }
+        
+
+        /// <summary>
         /// Represents the "Save" button. Writes the data to the registry and forces explorer.exe process to restart.
         /// </summary>
         /// <param name="sender"></param>
@@ -385,7 +472,9 @@ namespace Taskbar11
             SetTaskbarPenVisible(XAML_TaskbarPenCheckBox.IsChecked.Value);
             SetTaskbarTouchKeyboardVisible(XAML_TaskbarTouchCheckBox.IsChecked.Value);
             SetTaskbarTouchpadVisible(XAML_TaskbarVirtualTouchpadCheckBox.IsChecked.Value);
-            SetTaskbarHides(XAML_TaskbarBehaviourCheckBox.IsChecked.Value);
+            SetTaskbarHides(XAML_TaskbarBehaviourAutoHideCheckBox.IsChecked.Value);
+            SetTaskbarOnMultipleMonitors(XAML_TaskbarBehaviourMultiMonitorOnCheckBox.IsChecked.Value);
+            SetTaskbarMultiMonitorPosition(XAML_TaskbarBehaviourMultiMonitorPositionCheckBox.IsChecked.Value);
             RestartExplorer();
         }
 
