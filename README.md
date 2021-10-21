@@ -26,4 +26,5 @@ Bugs can be reported by opening issues. Ideas to include specific registry setti
 
 # Thank you for using Taskbar11
 If you enjoy Taskbar11 and feel like it's improving your productivity, please consider buying me a drink.
+
 <a href="https://www.buymeacoffee.com/DustinHendriks" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
