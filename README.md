@@ -22,6 +22,8 @@ All adjusted registry settings can be viewed in [MainWindow.xaml.cs](https://git
 # Contributing
 Bugs can be reported by opening issues. Ideas to include specific registry settings can also be discussed by opening an issue. 
 
-Thank you for using Taskbar11!
-
 <img src="https://github.com/jetspiking/Taskbar11/blob/main/Images/Taskbar11_Banner.jpg" width="128">
+
+# Thank you for using Taskbar11
+If you enjoy Taskbar11 and feel like it's improving your productivity, please consider buying me a drink.
+<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="DustinHendriks" data-color="#FFDD00" data-emoji="☕"  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff"></script>
