@@ -1,5 +1,5 @@
 [![Github All Releases](https://img.shields.io/github/downloads/jetspiking/Taskbar11/total.svg)]()
-[!License](https://img.shields.io/github/license/jetspiking/Taskbar11.svg)]()
+[![License](https://img.shields.io/github/license/jetspiking/Taskbar11.svg)]()
 
 # Taskbar11
 <img src="https://github.com/jetspiking/Taskbar11/blob/main/Images/Taskbar11_Icon.png">
