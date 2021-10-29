@@ -1,6 +1,7 @@
 [![Github All Releases](https://img.shields.io/github/downloads/jetspiking/Taskbar11/total.svg)]()
 [![License](https://img.shields.io/github/license/jetspiking/Taskbar11.svg)]()
 [![Stars](https://img.shields.io/github/stars/jetspiking/Taskbar11.svg)]()
+[![Language](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white)]()
 
 # Taskbar11
 <img src="https://github.com/jetspiking/Taskbar11/blob/main/Images/Taskbar11_Icon.png">
