@@ -29,6 +29,6 @@ Bugs can be reported by opening issues. Ideas to include specific registry setti
 <img src="https://github.com/jetspiking/Taskbar11/blob/main/Images/Taskbar11_Banner.jpg" width="128">
 
 # Thank you for using Taskbar11
-If you enjoy Taskbar11 and feel like it's improving your productivity and you want to support me extra, you could consider buying me a drink by navigating to my Buy Me A Coffee account.
+If you enjoy Taskbar11 and you feel like it is improving your productivity and you want to support me extra, you could consider buying me a drink by navigating to my Buy Me A Coffee account.
 
 <a href="https://www.buymeacoffee.com/DustinHendriks" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
