@@ -5,7 +5,7 @@
 # Taskbar11
 <img src="https://github.com/jetspiking/Taskbar11/blob/main/Images/Taskbar11_Icon.png">
 
-Change the position and size of the Windows taskbar in Windows 11
+Change the position and size of the Windows taskbar in Windows 11.
 
 # Description
 Taskbar11 customizes the look of the Windows 11 taskbar, which doesn't have any options by default. The taskbar can be set to the top or bottom (default) of the screen, it also allows for setting various icon sizes.
