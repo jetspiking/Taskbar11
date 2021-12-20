@@ -480,7 +480,7 @@ namespace Taskbar11
         {
             RegistryKey key = Registry.CurrentUser.OpenSubKey(PathInprocServer32, true);
             if (key == null) return false;
-            else return (key.GetValue(String.Empty).ToString()==String.Empty);
+            else return (key.GetValue(String.Empty)==String.Empty);
         }
 
         /// <summary>
