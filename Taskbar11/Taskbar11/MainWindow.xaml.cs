@@ -13,21 +13,33 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32;
 using System.Diagnostics;
+using System.Security.AccessControl;
 
 namespace Taskbar11
 {
     public partial class MainWindow : Window
     {
+        private const String AppTitle = "Taskbar11";
+        private const String PathExplorerStuckRects3 = @"Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3";
+        private const String PathExplorerAdvanced = @"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced";
+        private const String PathSearch = @"Software\Microsoft\Windows\CurrentVersion\Search";
+        private const String PathPenWorkspace = @"Software\Microsoft\Windows\CurrentVersion\PenWorkspace";
+        private const String PathTabletTip = @"Software\Microsoft\TabletTip\1.7";
+        private const String PathTouchpad = @"Software\Microsoft\Touchpad";
+        private const String PathExplorerMMStuckRects3 = @"Software\Microsoft\Windows\CurrentVersion\Explorer\MMStuckRects3";
+        private const String PathInprocServer32 = @"Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32";
+        private const String PathCLSID = @"Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}";
+
         public MainWindow()
         {
             InitializeComponent();
-            this.Title = "Taskbar11";
+            this.Title = AppTitle;
 
             int taskbarSize = GetTaskbarSize();
 
             if (taskbarSize > -1 && taskbarSize < 3)
                 XAML_TaskbarSizeBox.SelectedIndex = taskbarSize;
-            else 
+            else
                 XAML_TaskbarSizeBox.SelectedItem = taskbarSize.ToString();
 
             int taskbarPosition = GetTaskbarPosition();
@@ -47,7 +59,14 @@ namespace Taskbar11
             XAML_TaskbarBehaviourAutoHideCheckBox.IsChecked = IsTaskbarHidden();
             XAML_TaskbarBehaviourMultiMonitorOnCheckBox.IsChecked = IsTaskbarOnMultipleMonitors();
             XAML_TaskbarBehaviourMultiMonitorPositionCheckBox.IsChecked = IsTaskbarMultiMonitorPositionTaskbar();
+            XAML_UseOldContextMenuCheckBox.IsChecked = IsUseOldContextMenu();
+
+            XAML_TaskbarOrientationDependantPositionCheckBox.Checked += new RoutedEventHandler(XAML_TaskbarOrientationDependantPositionCheckBox_Checked);
+            XAML_TaskbarOrientationDependantPositionCheckBox.Unchecked += new RoutedEventHandler(XAML_TaskbarOrientationDependantPositionCheckBox_Unchecked);
+            SystemEvents.DisplaySettingsChanged += new EventHandler(SystemEvents_DisplaySettingsChanged);
         }
+
+
 
         /// <summary>
         /// Read the taskbar position from the registry.
@@ -55,7 +74,7 @@ namespace Taskbar11
         /// <returns>Integer that specifies the taskbar position on index 12 of the "Settings" key.</returns>
         public int GetTaskbarPosition()
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3", true);
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(PathExplorerStuckRects3, true);
             if (key != null)
             {
                 Object value = key.GetValue("Settings");
@@ -74,7 +93,7 @@ namespace Taskbar11
         /// <param name="taskbarPosition">Byte that specifies the taskbar position on index 12 of the "Settings" key.</param>
         public void SetTaskbarPosition(Byte taskbarPosition)
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3", true);
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(PathExplorerStuckRects3, true);
             if (key != null)
             {
                 Object value = key.GetValue("Settings");
@@ -93,7 +112,7 @@ namespace Taskbar11
         /// <returns>Integer that specifies the taskbar size.</returns>
         public int GetTaskbarSize()
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", true);
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(PathExplorerAdvanced, true);
             if (key != null)
             {
                 Object value = key.GetValue("TaskbarSi");
@@ -109,7 +128,7 @@ namespace Taskbar11
         /// <param name="taskbarSize">Byte that specifies the taskbar size.</param>
         public void SetTaskbarSize(Byte taskbarSize)
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", true);
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(PathExplorerAdvanced, true);
             if (key != null)
                 key.SetValue("TaskbarSi", taskbarSize, RegistryValueKind.DWord);
         }
@@ -120,7 +139,7 @@ namespace Taskbar11
         /// <returns>Integer that specifies the taskbar aligment.</returns>
         public int GetTaskbarAlignment()
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", true);
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(PathExplorerAdvanced, true);
             if (key != null)
             {
                 Object value = key.GetValue("TaskbarAl");
@@ -136,7 +155,7 @@ namespace Taskbar11
         /// <param name="taskbarAlignment">Byte that specifies the taskbar alignment.</param>
         public void SetTaskbarAlignment(Byte taskbarAlignment)
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", true);
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(PathExplorerAdvanced, true);
             if (key != null)
                 key.SetValue("TaskbarAl", taskbarAlignment, RegistryValueKind.DWord);
         }
@@ -147,7 +166,7 @@ namespace Taskbar11
         /// <returns>Boolean that defines whether the Search button is visible on the taskbar.</returns>
         public Boolean IsTaskbarSearchVisible()
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Search", true);
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(PathSearch, true);
             if (key != null)
             {
                 Object value = key.GetValue("SearchboxTaskbarMode");
@@ -163,7 +182,7 @@ namespace Taskbar11
         /// <param name="isVisible">Boolean that defines whether the Search button is visible on the taskbar.</param>
         public void SetTaskbarSearchVisible(Boolean isVisible)
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Search", true);
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(PathSearch, true);
             if (key != null)
                 key.SetValue("SearchboxTaskbarMode", isVisible ? 1 : 0, RegistryValueKind.DWord);
         }
@@ -174,7 +193,7 @@ namespace Taskbar11
         /// <returns>Boolean that defines whether the TaskView button is visible on the taskbar.</returns>
         public Boolean IsTaskbarTaskViewVisible()
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", true);
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(PathExplorerAdvanced, true);
             if (key != null)
             {
                 Object value = key.GetValue("ShowTaskViewButton");
@@ -190,7 +209,7 @@ namespace Taskbar11
         /// <param name="isVisible">Boolean that defines whether the TaskView button is visible on the taskbar.</param>
         public void SetTaskbarTaskViewVisible(Boolean isVisible)
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", true);
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(PathExplorerAdvanced, true);
             if (key != null)
                 key.SetValue("ShowTaskViewButton", isVisible ? 1 : 0, RegistryValueKind.DWord);
         }
@@ -201,12 +220,12 @@ namespace Taskbar11
         /// <returns>Boolean that defines whether the Widgets button is visible on the taskbar.</returns>
         public Boolean IsTaskbarWidgetsVisible()
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", true);
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(PathExplorerAdvanced, true);
             if (key != null)
             {
                 Object value = key.GetValue("TaskbarDa");
                 if (value != null)
-                    return ((int)value)==1;
+                    return ((int)value) == 1;
             }
             return false;
         }
@@ -217,7 +236,7 @@ namespace Taskbar11
         /// <param name="isVisible">Boolean that defines whether the Widgets button is visible on the taskbar.</param>
         public void SetTaskbarWidgetsVisible(Boolean isVisible)
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", true);
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(PathExplorerAdvanced, true);
             if (key != null)
                 key.SetValue("TaskbarDa", isVisible ? 1 : 0, RegistryValueKind.DWord);
         }
@@ -228,7 +247,7 @@ namespace Taskbar11
         /// <returns>Boolean that defines whether the Chat button is visible on the taskbar.</returns>
         public Boolean IsTaskbarChatVisible()
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", true);
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(PathExplorerAdvanced, true);
             if (key != null)
             {
                 Object value = key.GetValue("TaskbarMn");
@@ -244,7 +263,7 @@ namespace Taskbar11
         /// <param name="isVisible">Boolean that defines whether the Chat button is visible on the taskbar.</param>
         public void SetTaskbarChatVisible(Boolean isVisible)
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", true);
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(PathExplorerAdvanced, true);
             if (key != null)
                 key.SetValue("TaskbarMn", isVisible ? 1 : 0, RegistryValueKind.DWord);
         }
@@ -255,7 +274,7 @@ namespace Taskbar11
         /// <returns>Boolean that defines whether the Pen button is visible on the taskbar.</returns>
         public Boolean IsTaskbarPenVisible()
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\PenWorkspace", true);
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(PathPenWorkspace, true);
             if (key != null)
             {
                 Object value = key.GetValue("PenWorkspaceButtonDesiredVisibility");
@@ -271,7 +290,7 @@ namespace Taskbar11
         /// <param name="isVisible">Boolean that defines whether the Pen button is visible on the taskbar.</param>
         public void SetTaskbarPenVisible(Boolean isVisible)
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\PenWorkspace", true);
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(PathPenWorkspace, true);
             if (key != null)
                 key.SetValue("PenWorkspaceButtonDesiredVisibility", isVisible ? 1 : 0, RegistryValueKind.DWord);
         }
@@ -282,7 +301,7 @@ namespace Taskbar11
         /// <returns>Boolean that defines whether the Touch Keyboard button is visible on the taskbar.</returns>
         public Boolean IsTaskbarTouchKeyboardVisible()
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\TabletTip\1.7", true);
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(PathTabletTip, true);
             if (key != null)
             {
                 Object value = key.GetValue("TipbandDesiredVisibility");
@@ -298,7 +317,7 @@ namespace Taskbar11
         /// <param name="isVisible">Boolean that defines whether the Touch Keyboard button is visible on the taskbar.</param>
         public void SetTaskbarTouchKeyboardVisible(Boolean isVisible)
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\TabletTip\1.7", true);
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(PathTabletTip, true);
             if (key != null)
                 key.SetValue("TipbandDesiredVisibility", isVisible ? 1 : 0, RegistryValueKind.DWord);
         }
@@ -309,7 +328,7 @@ namespace Taskbar11
         /// <returns>Boolean that defines whether the Touchpad button is visible on the taskbar.</returns>
         public Boolean IsTaskbarTouchpadVisible()
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Touchpad", true);
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(PathTouchpad, true);
             if (key != null)
             {
                 Object value = key.GetValue("TouchpadDesiredVisibility");
@@ -326,7 +345,7 @@ namespace Taskbar11
 
         public void SetTaskbarTouchpadVisible(Boolean isVisible)
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Touchpad", true);
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(PathTouchpad, true);
             if (key != null)
                 key.SetValue("TouchpadDesiredVisibility", isVisible ? 1 : 0, RegistryValueKind.DWord);
         }
@@ -337,15 +356,14 @@ namespace Taskbar11
         /// <returns>Boolean that specifies whether the taskbar automatically hides based on index 8 of the "Settings" key.</returns>
         public Boolean IsTaskbarHidden()
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3", true);
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(PathExplorerStuckRects3, true);
             if (key != null)
             {
                 Object value = key.GetValue("Settings");
                 if (value != null)
                 {
                     Byte[] data = (Byte[])value;
-                    Console.WriteLine(data[7 + 1]);
-                    return data[7 + 1]==123;
+                    return data[7 + 1] == 123;
                 }
             }
             return false;
@@ -357,14 +375,14 @@ namespace Taskbar11
         /// <param name="taskbarPosition">Boolean that specifies whether the taskbar automatically hides based on index 8 of the "Settings" key.</param>
         public void SetTaskbarHides(Boolean isTaskbarHidden)
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3", true);
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(PathExplorerStuckRects3, true);
             if (key != null)
             {
                 Object value = key.GetValue("Settings");
                 if (value != null)
                 {
                     Byte[] data = (Byte[])value;
-                    data[7 + 1] = (Byte)(isTaskbarHidden?123:122);
+                    data[7 + 1] = (Byte)(isTaskbarHidden ? 123 : 122);
                     key.SetValue("Settings", data, RegistryValueKind.Binary);
                 }
             }
@@ -376,7 +394,7 @@ namespace Taskbar11
         /// <returns>Boolean that specifies whether the taskbar is shown on multiple monitors.</returns>
         public Boolean IsTaskbarOnMultipleMonitors()
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", true);
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(PathExplorerAdvanced, true);
             if (key != null)
             {
                 Object value = key.GetValue("MMTaskbarEnabled");
@@ -392,7 +410,7 @@ namespace Taskbar11
         /// <param name="isVisible">Boolean that specifies whether the taskbar is shown on multiple monitors.</param>
         public void SetTaskbarOnMultipleMonitors(Boolean isVisible)
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", true);
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(PathExplorerAdvanced, true);
             if (key != null)
                 key.SetValue("MMTaskbarEnabled", isVisible ? 1 : 0, RegistryValueKind.DWord);
         }
@@ -403,8 +421,8 @@ namespace Taskbar11
         /// <returns>Boolean that specifies the Multi Monitor Taskbar Behaviour, based on index 12 of each display key.</returns>
         public Boolean IsTaskbarMultiMonitorPositionTaskbar()
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\MMStuckRects3", true);
-            
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(PathExplorerMMStuckRects3, true);
+
             if (key != null)
             {
                 Byte displayCount = 0;
@@ -435,7 +453,7 @@ namespace Taskbar11
         {
             if (!multiMonitorTaskbarPosition) return;
 
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\MMStuckRects3", true);
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(PathExplorerMMStuckRects3, true);
             if (key != null)
             {
                 foreach (String keyName in key.GetValueNames())
@@ -453,7 +471,89 @@ namespace Taskbar11
                 }
             }
         }
-        
+
+        /// <summary>
+        /// Check whether a specific key is present on the system, this determines whether the old context menu is being used.
+        /// </summary>
+        /// <returns>Boolean that defines whether the old context menu is used.</returns>
+        private Boolean IsUseOldContextMenu()
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(PathInprocServer32, true);
+            if (key == null) return false;
+            else return (key.GetValue(String.Empty).ToString()==String.Empty);
+        }
+
+        /// <summary>
+        /// Write settings for the context menu to the registry.
+        /// </summary>
+        /// <param name="useOldContextMenu">Boolean that defines whether the old context menu is used.</param>
+        public void SetUseOldContextMenu(Boolean useOldContextMenu)
+        {
+            RegistrySecurity registrySecurity = new RegistrySecurity();
+            registrySecurity.SetAccessRule(new RegistryAccessRule(Environment.UserDomainName + "\\" + Environment.UserName, RegistryRights.FullControl, AccessControlType.Allow));
+            RegistryKey clsidKey = Registry.CurrentUser.OpenSubKey(PathCLSID, true);
+            clsidKey.SetAccessControl(registrySecurity);
+
+            if (useOldContextMenu)
+            {
+                RegistryKey key = Registry.CurrentUser.OpenSubKey(PathInprocServer32, true);
+                if (clsidKey == null)
+                    Registry.CurrentUser.CreateSubKey(PathCLSID, RegistryKeyPermissionCheck.Default);
+                if (key == null)
+                {
+                    Registry.CurrentUser.CreateSubKey(PathInprocServer32, RegistryKeyPermissionCheck.Default);
+                    key = Registry.CurrentUser.OpenSubKey(PathInprocServer32, true);
+                }
+                key.SetValue(String.Empty, String.Empty);
+            }
+            else if (clsidKey != null)
+                Registry.CurrentUser.DeleteSubKeyTree(PathInprocServer32);
+        }
+
+        /// <summary>
+        /// Called to notify UI of selection change to show comboboxes for taskbar position on orientation change.
+        /// </summary>
+        void XAML_TaskbarOrientationDependantPositionCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            XAML_TaskbarOrientationDependantStackPanel.Visibility = Visibility.Visible;
+        }
+
+        /// <summary>
+        /// Called to notify UI of selection change to hide comboboxes for taskbar position on orientation change.
+        /// </summary>
+        void XAML_TaskbarOrientationDependantPositionCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            XAML_TaskbarOrientationDependantStackPanel.Visibility = Visibility.Collapsed;
+        }
+
+        /// <summary>
+        /// Called to notify UI of landscape or portrait mode switch, respectively.
+        /// </summary>
+        void SystemEvents_DisplaySettingsChanged(object sender, EventArgs e)
+        {
+            CheckOrientation();
+            RestartExplorer();
+        }
+
+        /// <summary>
+        /// Set the taskbar position, based on the orientation of the device.
+        /// </summary>
+        void CheckOrientation()
+        {
+            if (!(Boolean)XAML_TaskbarOrientationDependantPositionCheckBox.IsChecked) return;
+
+            if (SystemParameters.PrimaryScreenWidth > SystemParameters.PrimaryScreenHeight)
+            {
+                if (XAML_TaskbarOrientationDependantLandscapePositionBox.SelectedIndex == -1) return;
+                SetTaskbarPosition(XAML_TaskbarOrientationDependantLandscapePositionBox.SelectedIndex == 0 ? (Byte)3 : (Byte)1);
+            }
+            else
+            {
+                if (XAML_TaskbarOrientationDependantPortraitPositionBox.SelectedIndex == -1) return;
+                SetTaskbarPosition(XAML_TaskbarOrientationDependantPortraitPositionBox.SelectedIndex == 0 ? (Byte)3 : (Byte)1);
+            }
+        }
+
 
         /// <summary>
         /// Represents the "Save" button. Writes the data to the registry and forces explorer.exe process to restart.
@@ -475,6 +575,8 @@ namespace Taskbar11
             SetTaskbarHides(XAML_TaskbarBehaviourAutoHideCheckBox.IsChecked.Value);
             SetTaskbarOnMultipleMonitors(XAML_TaskbarBehaviourMultiMonitorOnCheckBox.IsChecked.Value);
             SetTaskbarMultiMonitorPosition(XAML_TaskbarBehaviourMultiMonitorPositionCheckBox.IsChecked.Value);
+            SetUseOldContextMenu(XAML_UseOldContextMenuCheckBox.IsChecked.Value);
+            CheckOrientation();
             RestartExplorer();
         }
 

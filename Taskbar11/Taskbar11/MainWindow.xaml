@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Icon="Taskbar11.ico"
         Title="MainWindow" Height="400" Width="600">
-    
+
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <StackPanel Name="XAML_StackPanel" Orientation="Vertical">
             <Label FontFamily="Segoe UI" FontWeight="ExtraLight">Don't forget to apply and save the settings by pressing the bottom "Save" button.</Label>
@@ -43,6 +43,24 @@
             <Label FontFamily="Segoe UI" FontWeight="Bold">Multi Monitor Taskbar</Label>
             <CheckBox Name="XAML_TaskbarBehaviourMultiMonitorOnCheckBox" Margin="5,5,5,5">Show Secondary Taskbars</CheckBox>
             <CheckBox Name="XAML_TaskbarBehaviourMultiMonitorPositionCheckBox" Margin="5,5,5,5">Equal Taskbar Positions</CheckBox>
+            <Separator/>
+            <Label FontFamily="Segoe UI" FontWeight="Bold">Context Menu</Label>
+            <CheckBox Name="XAML_UseOldContextMenuCheckBox" Margin="5,5,5,5">Use Old Context Menu For Right Mouse Button Click</CheckBox>
+            <Separator/>
+            <Label FontFamily="Segoe UI" FontWeight="Bold">Tablet Options</Label>
+            <CheckBox Name="XAML_TaskbarOrientationDependantPositionCheckBox" Margin="5,5,5,5">Use Orientation Dependant Taskbar Position</CheckBox>
+            <StackPanel Name="XAML_TaskbarOrientationDependantStackPanel" Visibility="Collapsed" Orientation="Vertical">
+                <Label FontFamily="Segoe UI" FontWeight="SemiBold" Margin="15,0,5,0">Landscape</Label>
+                <ComboBox Name="XAML_TaskbarOrientationDependantLandscapePositionBox" Margin="20,0,5,0">
+                    <ComboBoxItem Name="XAML_TaskbarOrientationDependantPositionBoxItem_Bottom">Bottom</ComboBoxItem>
+                    <ComboBoxItem Name="XAML_TaskbarOrientationDependantPositionBoxItem_Top">Top</ComboBoxItem>
+                </ComboBox>
+                <Label FontFamily="Segoe UI" FontWeight="SemiBold" Margin="15,0,5,0">Portrait</Label>
+                <ComboBox Name="XAML_TaskbarOrientationDependantPortraitPositionBox" Margin="20,0,5,0">
+                    <ComboBoxItem Name="XAML_TaskbarOrientationDependantPortraitPositionBoxItem_Bottom">Bottom</ComboBoxItem>
+                    <ComboBoxItem Name="XAML_TaskbarOrientationDependantPortraitPositionBoxItem_Top">Top</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
             <Separator/>
             <Button Click="Save_Click" Margin="5,5,5,5" Width="100">
                 <StackPanel Orientation="Horizontal">
