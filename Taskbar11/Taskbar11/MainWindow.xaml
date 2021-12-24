@@ -38,7 +38,7 @@
             <CheckBox Name="XAML_TaskbarVirtualTouchpadCheckBox" Margin="5,5,5,5">Virtual Touchpad</CheckBox>
             <Separator/>
             <Label FontFamily="Segoe UI" FontWeight="Bold">Taskbar Behaviour</Label>
-            <CheckBox Name="XAML_TaskbarBehaviourAutoHideCheckBox" Margin="5,5,5,5">Automatically Hide Touchbar</CheckBox>
+            <CheckBox Name="XAML_TaskbarBehaviourAutoHideCheckBox" Margin="5,5,5,5">Automatically Hide Taskbar</CheckBox>
             <Separator/>
             <Label FontFamily="Segoe UI" FontWeight="Bold">Multi Monitor Taskbar</Label>
             <CheckBox Name="XAML_TaskbarBehaviourMultiMonitorOnCheckBox" Margin="5,5,5,5">Show Secondary Taskbars</CheckBox>
