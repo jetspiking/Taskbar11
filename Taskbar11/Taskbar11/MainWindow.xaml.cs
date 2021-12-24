@@ -480,7 +480,7 @@ namespace Taskbar11
         {
             RegistryKey key = Registry.CurrentUser.OpenSubKey(PathInprocServer32, true);
             if (key == null) return false;
-            else return (key.GetValue(String.Empty)==String.Empty);
+            else return (key.GetValue(String.Empty) == String.Empty);
         }
 
         /// <summary>
@@ -491,21 +491,25 @@ namespace Taskbar11
         {
             RegistrySecurity registrySecurity = new RegistrySecurity();
             registrySecurity.SetAccessRule(new RegistryAccessRule(Environment.UserDomainName + "\\" + Environment.UserName, RegistryRights.FullControl, AccessControlType.Allow));
+            
             RegistryKey clsidKey = Registry.CurrentUser.OpenSubKey(PathCLSID, true);
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(PathInprocServer32, true);
+
+            if (clsidKey == null)
+            {
+                Registry.CurrentUser.CreateSubKey(PathCLSID, RegistryKeyPermissionCheck.Default);
+                clsidKey = Registry.CurrentUser.OpenSubKey(PathCLSID, true);
+            }
+            if (key == null)
+            {
+                Registry.CurrentUser.CreateSubKey(PathInprocServer32, RegistryKeyPermissionCheck.Default);
+                key = Registry.CurrentUser.OpenSubKey(PathInprocServer32, true);
+            }
+            
             clsidKey.SetAccessControl(registrySecurity);
 
             if (useOldContextMenu)
-            {
-                RegistryKey key = Registry.CurrentUser.OpenSubKey(PathInprocServer32, true);
-                if (clsidKey == null)
-                    Registry.CurrentUser.CreateSubKey(PathCLSID, RegistryKeyPermissionCheck.Default);
-                if (key == null)
-                {
-                    Registry.CurrentUser.CreateSubKey(PathInprocServer32, RegistryKeyPermissionCheck.Default);
-                    key = Registry.CurrentUser.OpenSubKey(PathInprocServer32, true);
-                }
                 key.SetValue(String.Empty, String.Empty);
-            }
             else if (clsidKey != null)
                 Registry.CurrentUser.DeleteSubKeyTree(PathInprocServer32);
         }
