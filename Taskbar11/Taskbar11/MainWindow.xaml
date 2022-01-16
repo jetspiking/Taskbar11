@@ -2,72 +2,10 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Icon="Taskbar11.ico"
-        Title="MainWindow" Height="400" Width="600">
+        Title="MainWindow" Height="500" Width="700">
 
-    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-        <StackPanel Name="XAML_StackPanel" Orientation="Vertical">
-            <Label FontFamily="Segoe UI" FontWeight="ExtraLight">Don't forget to apply and save the settings by pressing the bottom "Save" button.</Label>
-            <Label FontFamily="Segoe UI" FontWeight="Bold">Taskbar Position</Label>
-            <ComboBox Name="XAML_TaskbarPositionBox" Margin="5,5,5,5">
-                <ComboBoxItem Name="XAML_TaskbarPositionBoxItem_Bottom">Bottom</ComboBoxItem>
-                <ComboBoxItem Name="XAML_TaskbarPositionBoxItem_Top">Top</ComboBoxItem>
-            </ComboBox>
-            <Separator/>
-            <Label FontFamily="Segoe UI" FontWeight="Bold">Taskbar Size</Label>
-            <ComboBox Name="XAML_TaskbarSizeBox" Margin="5,5,5,5">
-                <ComboBoxItem Name="XAML_TaskbarSizeBoxItem_Small">Small</ComboBoxItem>
-                <ComboBoxItem Name="XAML_TaskbarSizeBoxItem_Medium">Medium</ComboBoxItem>
-                <ComboBoxItem Name="XAML_TaskbarSizeBoxItem_Large">Large</ComboBoxItem>
-            </ComboBox>
-            <Separator/>
-            <Label FontFamily="Segoe UI" FontWeight="Bold">Taskbar Indentation</Label>
-            <ComboBox Name="XAML_TaskbarIndentationBox" Margin="5,5,5,5">
-                <ComboBoxItem Name="XAML_TaskbarIndentationItem_Left">Left</ComboBoxItem>
-                <ComboBoxItem Name="XAML_TaskbarIndentationItem_Center">Center</ComboBoxItem>
-            </ComboBox>
-            <Separator/>
-            <Label FontFamily="Segoe UI" FontWeight="Bold">Taskbar Items</Label>
-            <CheckBox Name="XAML_TaskbarSearchCheckBox" Margin="5,5,5,5">Search</CheckBox>
-            <CheckBox Name="XAML_TaskbarTaskViewBox" Margin="5,5,5,5">Task View</CheckBox>
-            <CheckBox Name="XAML_TaskbarWidgetsBox" Margin="5,5,5,5">Widgets</CheckBox>
-            <CheckBox Name="XAML_TaskbarChatBox" Margin="5,5,5,5">Chat</CheckBox>
-            <Separator/>
-            <Label FontFamily="Segoe UI" FontWeight="Bold">Taskbar Corner Icons</Label>
-            <CheckBox Name="XAML_TaskbarPenCheckBox" Margin="5,5,5,5">Pen</CheckBox>
-            <CheckBox Name="XAML_TaskbarTouchCheckBox" Margin="5,5,5,5">Touch Keyboard</CheckBox>
-            <CheckBox Name="XAML_TaskbarVirtualTouchpadCheckBox" Margin="5,5,5,5">Virtual Touchpad</CheckBox>
-            <Separator/>
-            <Label FontFamily="Segoe UI" FontWeight="Bold">Taskbar Behaviour</Label>
-            <CheckBox Name="XAML_TaskbarBehaviourAutoHideCheckBox" Margin="5,5,5,5">Automatically Hide Taskbar</CheckBox>
-            <Separator/>
-            <Label FontFamily="Segoe UI" FontWeight="Bold">Multi Monitor Taskbar</Label>
-            <CheckBox Name="XAML_TaskbarBehaviourMultiMonitorOnCheckBox" Margin="5,5,5,5">Show Secondary Taskbars</CheckBox>
-            <CheckBox Name="XAML_TaskbarBehaviourMultiMonitorPositionCheckBox" Margin="5,5,5,5">Equal Taskbar Positions</CheckBox>
-            <Separator/>
-            <Label FontFamily="Segoe UI" FontWeight="Bold">Context Menu</Label>
-            <CheckBox Name="XAML_UseOldContextMenuCheckBox" Margin="5,5,5,5">Use Old Context Menu For Right Mouse Button Click</CheckBox>
-            <Separator/>
-            <Label FontFamily="Segoe UI" FontWeight="Bold">Tablet Options</Label>
-            <CheckBox Name="XAML_TaskbarOrientationDependantPositionCheckBox" Margin="5,5,5,5">Use Orientation Dependant Taskbar Position</CheckBox>
-            <StackPanel Name="XAML_TaskbarOrientationDependantStackPanel" Visibility="Collapsed" Orientation="Vertical">
-                <Label FontFamily="Segoe UI" FontWeight="SemiBold" Margin="15,0,5,0">Landscape</Label>
-                <ComboBox Name="XAML_TaskbarOrientationDependantLandscapePositionBox" Margin="20,0,5,0">
-                    <ComboBoxItem Name="XAML_TaskbarOrientationDependantPositionBoxItem_Bottom">Bottom</ComboBoxItem>
-                    <ComboBoxItem Name="XAML_TaskbarOrientationDependantPositionBoxItem_Top">Top</ComboBoxItem>
-                </ComboBox>
-                <Label FontFamily="Segoe UI" FontWeight="SemiBold" Margin="15,0,5,0">Portrait</Label>
-                <ComboBox Name="XAML_TaskbarOrientationDependantPortraitPositionBox" Margin="20,0,5,0">
-                    <ComboBoxItem Name="XAML_TaskbarOrientationDependantPortraitPositionBoxItem_Bottom">Bottom</ComboBoxItem>
-                    <ComboBoxItem Name="XAML_TaskbarOrientationDependantPortraitPositionBoxItem_Top">Top</ComboBoxItem>
-                </ComboBox>
-            </StackPanel>
-            <Separator/>
-            <Button Click="Save_Click" Margin="5,5,5,5" Width="100">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="pack://application:,,,/Resources/FloppyDisk.png" Width="30"></Image>
-                    <TextBlock FontFamily="Segoe UI" FontWeight="Bold" VerticalAlignment="Center">Save</TextBlock>
-                </StackPanel>
-            </Button>
-        </StackPanel>
-    </ScrollViewer>
+    <DockPanel x:Name="AppDockPanel" Width="700">
+        <ScrollViewer x:Name="AppScrollViewer" Width="600" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" DockPanel.Dock="Right">
+        </ScrollViewer>
+    </DockPanel>
 </Window>

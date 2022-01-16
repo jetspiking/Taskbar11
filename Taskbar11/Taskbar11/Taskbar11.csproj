@@ -72,6 +72,22 @@
     <ApplicationIcon>Taskbar11.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.WindowsAPICodePack">
+      <HintPath>.\Microsoft.WindowsAPICodePack.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.ExtendedLinguisticServices">
+      <HintPath>.\Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Sensors">
+      <HintPath>.\Microsoft.WindowsAPICodePack.Sensors.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell">
+      <HintPath>.\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -88,15 +104,28 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
+    <Compile Include="Controllers\ApplicationSettings.cs" />
+    <Compile Include="Interfaces\IMenuUpdateNotifier.cs" />
+    <Compile Include="Interfaces\IUpdatableAppView.cs" />
+    <Compile Include="Models\MenuWindows.cs" />
+    <Compile Include="ToolbarWindow.xaml.cs">
+      <DependentUpon>ToolbarWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Taskbar11MenuView.cs" />
+    <Compile Include="Views\TaskbarSettingsView.cs" />
+    <Compile Include="Views\ToolbarSettingsView.cs" />
+    <Compile Include="Windows\ToolbarProgramWindow.cs" />
+    <Page Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </ApplicationDefinition>
+    </Page>
+    <Compile Include="Controllers\ApplicationUtilities.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\TaskbarSettingsController.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -109,6 +138,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ToolbarWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -143,6 +176,23 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Taskbar11.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\PushPin.png" />
+    <Resource Include="Resources\Journal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Microsoft.WindowsAPICodePack.Shell.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Microsoft.WindowsAPICodePack.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll" />
+    <EmbeddedResource Include="Microsoft.WindowsAPICodePack.Sensors.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Taskbar11Logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
