@@ -36,9 +36,9 @@ If you enjoy Taskbar11 and you feel like it is improving your productivity and y
 # Upcoming Features
 ## Prioritized
 - Taskview for a top-aligned taskbar (thanks to @Naamloos for submitting [issue 25](https://github.com/jetspiking/Taskbar11/issues/25)
-- Application should not be able to open more than one time (thanks to @Euclidite for suggesting)
+- Application should not be able to open more than one time (thanks to @Euclidite for suggesting in [issue 14](https://github.com/jetspiking/Taskbar11/issues/14))
 - Audio button in toolbar which opens the old audio mixer (SndVol.exe in system32)  
 
 ## Upcoming
-- Wi-Fi and Energy-symbol in toolbar (thanks to Euclidite for suggesting)
-- Close to background button that silently continues application without taskbar icon (thanks to Euclidite for suggesting)
+- Wi-Fi and Energy-symbol in toolbar (thanks to @Euclidite for suggesting)
+- Close to background button that silently continues application without taskbar icon (thanks to @Euclidite for suggesting)
