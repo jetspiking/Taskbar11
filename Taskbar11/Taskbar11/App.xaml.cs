@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
 using System.Windows;
 using System.Reflection;
-using Microsoft.WindowsAPICodePack.Shell;
 
 namespace Taskbar11
 {
@@ -15,7 +10,7 @@ namespace Taskbar11
     public partial class App : Application
     {
         // IMPORTANT: Project Name Must Be _Your_ Project Name, Otherwise The Assembly Won't Be Able To Load! 
-        private static String ProjectName = System.Reflection.Assembly.GetEntryAssembly().GetName().Name;
+        private static String ProjectName = Assembly.GetEntryAssembly().GetName().Name;
         private static String AssemblyPathPrefix = ProjectName+'.';
         private const String DllExtension = ".dll";
         private const String AssemblyNotFoundWarning = "ERROR: Assembly Not Found!";

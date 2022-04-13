@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Taskbar11.Interfaces;
 using System.Windows.Media;
 using System.Windows;
 using Taskbar11.Controllers;
@@ -10,7 +7,6 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Input;
 using System.Windows.Threading;
-using System.ComponentModel;
 using Microsoft.WindowsAPICodePack.Shell;
 using System.Diagnostics;
 
@@ -175,7 +171,7 @@ namespace Taskbar11.Windows
                     int localIndex = index++;
                     appInfoPanel.MouseEnter += (eventSender, eventE) => { ((StackPanel)eventSender).Background = new SolidColorBrush(Colors.Gray); };
                     appInfoPanel.MouseLeave += (eventSender, eventE) => { ((StackPanel)eventSender).Background = new SolidColorBrush(Colors.Transparent); };
-                    appInfoPanel.MouseDown += (eventSender, eventE) => { System.Diagnostics.Process.Start(ExplorerProcess, ShellPath + apps[localIndex].ParsingName); };
+                    appInfoPanel.MouseDown += (eventSender, eventE) => { Process.Start(ExplorerProcess, ShellPath + apps[localIndex].ParsingName); };
                 }
 
                 searchBox.GotKeyboardFocus += (searchBoxObject, keyboardFocusChangedEvent) =>
