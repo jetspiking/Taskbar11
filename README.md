@@ -2,10 +2,10 @@
 [![License](https://img.shields.io/github/license/jetspiking/Taskbar11.svg)]()
 [![Stars](https://img.shields.io/github/stars/jetspiking/Taskbar11.svg)]()
 
-# Development halted
+# Upcoming Features
+## Development halted
 - Due to the removal of registry tweaks and corresponding effects in Windows 11 the development is currently halted, because functions like setting the taskbar to the top through the registry are no longer working in the latest Windows 11 version(s). 
 
-# Upcoming Features
 ## Prioritized
 - [Halted] Taskview for a top-aligned taskbar (thanks to @Naamloos for submitting [issue 25](https://github.com/jetspiking/Taskbar11/issues/25))
 - Application should not be able to open more than one time (thanks to @Euclidite for suggesting in [issue 14](https://github.com/jetspiking/Taskbar11/issues/14))
