@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Taskbar11.Controllers
+﻿namespace Taskbar11.Controllers
 {
     /// <summary>
     /// Application Constants.

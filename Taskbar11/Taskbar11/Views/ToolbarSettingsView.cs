@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Taskbar11.Interfaces;
 using System.Windows.Controls;
 using System.Windows;
@@ -18,9 +15,9 @@ namespace Taskbar11.Views
 
         private ToolbarProgramWindow toolbarWindow;
 
-        private const String InterfaceToolbarSettings = "Toolbar Settings";
-        private const String InterfaceEnableToolbar = "Enable Toolbar";
-        private const String InterfaceMoveHint = "The Toolbar can be moved by clicking on the pushpin icon and holding left mouse button, followed by dragging the mouse to the desired position.";
+        public readonly String InterfaceToolbarSettings = Properties.Resources.ToolbarSettings;
+        public readonly String InterfaceEnableToolbar = Properties.Resources.EnableToolbar;
+        public readonly String InterfaceMoveHint = Properties.Resources.TheToolbarCanBeMovedByClickingOnThePushpinIconAndHoldingLeftMouseButtonFollowedByDraggingTheMouseToTheDesiredPosition;
 
         /// <summary>
         /// Initialize interface elements.
