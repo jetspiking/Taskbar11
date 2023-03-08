@@ -2,18 +2,8 @@
 [![License](https://img.shields.io/github/license/jetspiking/Taskbar11.svg)]()
 [![Stars](https://img.shields.io/github/stars/jetspiking/Taskbar11.svg)]()
 
-# Upcoming Features
-## Development halted
+# Development halted
 - Due to the removal of registry tweaks and corresponding effects in Windows 11 the development is currently halted, because functions like setting the taskbar to the top through the registry are no longer working in the latest Windows 11 version(s). 
-
-## Prioritized
-- [Halted] Taskview for a top-aligned taskbar (thanks to @Naamloos for submitting [issue 25](https://github.com/jetspiking/Taskbar11/issues/25))
-- Application should not be able to open more than one time (thanks to @Euclidite for suggesting in [issue 14](https://github.com/jetspiking/Taskbar11/issues/14))
-- Audio button in toolbar which opens the old audio mixer (SndVol.exe in system32)  
-
-## Upcoming
-- Wi-Fi and Energy-symbol in toolbar (thanks to @Euclidite for suggesting)
-- Close to background button that silently continues application without taskbar icon (thanks to @Euclidite for suggesting)
 
 # Taskbar11
 <img src="https://github.com/jetspiking/Taskbar11/blob/main/Images/Taskbar11_Icon.png">
@@ -35,6 +25,15 @@ Possibly works on other version of Windows. However, since Windows 11 is the fir
 
 # Information
 All adjusted registry settings can be viewed in [TaskbarSettingsController.cs](https://github.com/jetspiking/Taskbar11/blob/main/Taskbar11/Taskbar11/Controllers/TaskbarSettingsController.cs).
+
+## Prioritized
+- [Halted] Taskview for a top-aligned taskbar (thanks to @Naamloos for submitting [issue 25](https://github.com/jetspiking/Taskbar11/issues/25))
+- Application should not be able to open more than one time (thanks to @Euclidite for suggesting in [issue 14](https://github.com/jetspiking/Taskbar11/issues/14))
+- Audio button in toolbar which opens the old audio mixer (SndVol.exe in system32)  
+
+## Upcoming
+- Wi-Fi and Energy-symbol in toolbar (thanks to @Euclidite for suggesting)
+- Close to background button that silently continues application without taskbar icon (thanks to @Euclidite for suggesting)
 
 # Contributing
 Bugs can be reported by opening issues. Ideas to include specific registry settings can also be discussed by opening an issue. 
