@@ -114,4 +114,111 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ToolbarSettings" xml:space="preserve">
+    <value>Toolbar Settings</value>
+  </data>
+  <data name="EnableToolbar" xml:space="preserve">
+    <value>Enable Toolbar</value>
+  </data>
+  <data name="TheToolbarCanBeMovedByClickingOnThePushpinIconAndHoldingLeftMouseButtonFollowedByDraggingTheMouseToTheDesiredPosition" xml:space="preserve">
+    <value>The Toolbar can be moved by clicking on the pushpin icon and holding left mouse button, followed by dragging the mouse to the desired position.</value>
+  </data>
+  <data name="DonTForgetToApplyAndSaveTheSettingsByPressingTheBottomSaveButton" xml:space="preserve">
+    <value>Don't forget to apply and save the settings by pressing the bottom "Save" button.</value>
+  </data>
+  <data name="TaskbarPosition" xml:space="preserve">
+    <value>Taskbar Position</value>
+  </data>
+  <data name="Top" xml:space="preserve">
+    <value>Top</value>
+  </data>
+  <data name="Bottom" xml:space="preserve">
+    <value>Bottom</value>
+  </data>
+  <data name="TaskbarSize" xml:space="preserve">
+    <value>Taskbar Size</value>
+  </data>
+  <data name="Small" xml:space="preserve">
+    <value>Small</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="Large" xml:space="preserve">
+    <value>Large</value>
+  </data>
+  <data name="TaskbarIndentation" xml:space="preserve">
+    <value>Taskbar Indentation</value>
+  </data>
+  <data name="Left" xml:space="preserve">
+    <value>Left</value>
+  </data>
+  <data name="Center" xml:space="preserve">
+    <value>Center</value>
+  </data>
+  <data name="TaskbarItems" xml:space="preserve">
+    <value>Taskbar Items</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="TaskView" xml:space="preserve">
+    <value>Task View</value>
+  </data>
+  <data name="Widgets" xml:space="preserve">
+    <value>Widgets</value>
+    <comment>@Invariant</comment>
+  </data>
+  <data name="Chat" xml:space="preserve">
+    <value>Chat</value>
+    <comment>@Invariant</comment>
+  </data>
+  <data name="TaskbarCornerIcons" xml:space="preserve">
+    <value>Taskbar Corner Icons</value>
+  </data>
+  <data name="Pen" xml:space="preserve">
+    <value>Pen</value>
+  </data>
+  <data name="TouchKeyboard" xml:space="preserve">
+    <value>Touch Keyboard</value>
+  </data>
+  <data name="VirtualTouchpad" xml:space="preserve">
+    <value>Virtual Touchpad</value>
+  </data>
+  <data name="TaskbarBehaviour" xml:space="preserve">
+    <value>Taskbar Behaviour</value>
+  </data>
+  <data name="AutomaticallyHideTaskbar" xml:space="preserve">
+    <value>Automatically Hide Taskbar</value>
+  </data>
+  <data name="MultiMonitorTaskbar" xml:space="preserve">
+    <value>Multi Monitor Taskbar</value>
+  </data>
+  <data name="ShowSecondaryTaskbars" xml:space="preserve">
+    <value>Show Secondary Taskbars</value>
+  </data>
+  <data name="EqualTaskbarPositions" xml:space="preserve">
+    <value>Equal Taskbar Positions</value>
+  </data>
+  <data name="ContextMenu" xml:space="preserve">
+    <value>Context Menu</value>
+  </data>
+  <data name="UseOldContextMenuForRightMouseButtonClick" xml:space="preserve">
+    <value>Use Old Context Menu For Right Mouse Button Click</value>
+  </data>
+  <data name="TabletOptions" xml:space="preserve">
+    <value>Tablet Options</value>
+  </data>
+  <data name="UseOrientationDependantTaskbarPosition" xml:space="preserve">
+    <value>Use Orientation Dependant Taskbar Position</value>
+  </data>
+  <data name="Landscape" xml:space="preserve">
+    <value>Landscape</value>
+  </data>
+  <data name="Portrait" xml:space="preserve">
+    <value>Portrait</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
 </root>

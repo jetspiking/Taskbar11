@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Taskbar11.Interfaces;
 using System.Windows.Controls;
 using Taskbar11.Models;
